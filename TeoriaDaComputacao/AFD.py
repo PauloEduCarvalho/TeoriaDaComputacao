@@ -33,12 +33,18 @@ transicoes = {}#Dicionario para fazer as transicoes do AFD
 
 for estado in estados:#Logica para colocar as transicoes
     for letra in alfabeto:
-        print(f'{estado} lendo{letra} vai para o estado: ', end='')
+        print(f'{estado} lendo "{letra}" vai para o estado: ', end='')
         proximoEstado = input()
         transicoes[(estado, letra)] = proximoEstado
 
-palavra = input("Escreva uma entrada: ")#Inserir palavra para testar
-
-[(transicoes[(estadoAtual, char)])for char in palavra]#Itera ate o final da palavra e atualiza o estado
-
-print("Palavra aceita!" if estadoAtual in estadosFinais else "Palavra rejeitada!")
+palavra = input("Escreva uma entrada, para sair digite 'sair': ")#Inserir palavra para testar
+while palavra != 'sair':
+    for char in palavra:
+        estadoFinal  = transicoes[(estadoAtual, char)]#Itera ate o final da palavra e atualiza o estado
+    
+    if estadoFinal in estadosFinais:
+        print("Palavra aceita!")
+    else:
+         print("Palavra rejeitada!")
+    palavra = input("Escreva uma entrada, para sair digite 'sair': ")#Inserir palavra para testar
+    estadoAtual = estadoInicial
